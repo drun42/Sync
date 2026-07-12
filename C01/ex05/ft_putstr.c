@@ -2,10 +2,6 @@
 
 void	ft_putstr(char *str)
 {
-	int i;
-//	i = str[0];
-	i = 0;
-//	while (i != "\0")
 	while (*str != '\0')
 	{
 		write (1, str, 1);
