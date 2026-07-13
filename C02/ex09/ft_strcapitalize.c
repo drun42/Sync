@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strcapitalize.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/13 17:49:42 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/13 18:05:25 by dshofer          ###   ########.fr       */
+/*   Created: 2026/07/13 22:45:03 by dshofer           #+#    #+#             */
+/*   Updated: 2026/07/13 23:45:41 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
-char *ft_strncpy(char *dest, char *src, unsigned int n)
+char	*ft_strcapitalize(char *str)
 {
-	unsigned int	i;
+	int i;
 
-	i = 0;
-	while (src[i] != '\0' && i < n)
+
+	while(*str)
 	{
-		dest[i] = src[i];
-		i++;
+		if(*(str - 1) == 32 && *str >= 'a' && *str <= 'z')
+
+			*str -= 32;
+		if((*(str -1) == (*str >= '\0' && *str <= ' ') && (*str >= 'A' && *str <= 'Z')))
+			*str += 32;
+		str++;
 	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++; 
-	}
-	return (dest);
+	return(str);
 }
 
-/*
- * int main(void)
- * {
- * 	char src[] = "abcde";
- * 	char dest[] = "pizda";
- * 	printf("%s", strncpy(dest, src, 5));
- * 	printf("\n%s", strncpy(dest, src, 5));
- * 	return (0);
- * }
- */
+int main (void)
+{
+	printf("%s", ft_strcapitalize("hi, how are you? 42words forty-two; fifty+and+one"));
+}

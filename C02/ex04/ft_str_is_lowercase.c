@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_str_is_lowercase.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/13 17:49:42 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/13 18:05:25 by dshofer          ###   ########.fr       */
+/*   Created: 2026/07/13 20:52:40 by dshofer           #+#    #+#             */
+/*   Updated: 2026/07/13 20:53:43 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strncpy(char *dest, char *src, unsigned int n)
+#include <stdio.h>
+
+int	ft_str_is_lowercase(char *str)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	while (src[i] != '\0' && i < n)
+	while (str[i] != '\0')
 	{
-		dest[i] = src[i];
+		if (!(str[i] >= 'a' && str[i] <= 'z'))
+			return (0);
 		i++;
 	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++; 
-	}
-	return (dest);
+	return (1);
 }
-
 /*
- * int main(void)
- * {
- * 	char src[] = "abcde";
- * 	char dest[] = "pizda";
- * 	printf("%s", strncpy(dest, src, 5));
- * 	printf("\n%s", strncpy(dest, src, 5));
- * 	return (0);
- * }
- */
+int main(void)
+{
+	char *str = "pizda228";
+	printf("%d", ft_str_is_alpha(str));
+//	char *str = "pizda22";
+	//ft_str_is_alpha(str);
+}
+*/
