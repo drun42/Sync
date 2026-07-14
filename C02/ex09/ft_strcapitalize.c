@@ -12,23 +12,23 @@
 #include <stdio.h>
 
 char	*ft_strcapitalize(char *str)
+// passing as argument pointer to a string so litterally str[0]
 {
-	int i;
-
-
 	while(*str)
+	// while str[i] != '\0'
 	{
-		if(*(str - 1) == 32 && *str >= 'a' && *str <= 'z')
+		if(*(str - 1) == 32 /* if str[i - 1] == space*/  && *str >= 'a' && *str <= 'z'/* and str[0] == a-z*/)
 
-			*str -= 32;
-		if((*(str -1) == (*str >= '\0' && *str <= ' ') && (*str >= 'A' && *str <= 'Z')))
-			*str += 32;
-		str++;
+			*str -= 32;/* then str[i] a -> A*/
+		if((*(str -1) == (*str >= '\0' && *str <= ' ')/* if str[i - 1] == non printable char*/ && (*str >= 'A' && *str <= 'Z')/* and str[i] == A - Z*/))
+			*str += 32;/*then A = a*/
+		str++;/* str[i] += 1*/
 	}
-	return(str);
+	return(str);/*return pointer to the last character in string, in my example - e*/
 }
 
 int main (void)
 {
-	printf("%s", ft_strcapitalize("hi, how are you? 42words forty-two; fifty+and+one"));
-}
+	char src[] = "hi, how are you? 42words forty-two; fifty+and+one";
+	char *str = &src[0];
+	printf("%s", ft_strcapitalize(
