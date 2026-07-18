@@ -31,4 +31,5 @@ int main (void)
 {
 	char src[] = "hi, how are you? 42words forty-two; fifty+and+one";
 	char *str = &src[0];
-	printf("%s", ft_strcapitalize(
+	printf("%s", ft_strcapitalize(str));
+

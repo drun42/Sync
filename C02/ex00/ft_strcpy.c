@@ -1,19 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/17 11:07:49 by dshofer           #+#    #+#             */
+/*   Updated: 2026/07/17 11:19:00 by dshofer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
-char *ft_strcpy(char *dest, const char *src)
-// char* function() = the return of teh fonction is a pointer to a char
-// function(const char *src) = the function will not modify te content of src pointer
+char	*ft_strcpy(char *dest, const char *src)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (src[i] != '\0')
-    {
-        dest[i] = src[i];
-        i++;
-    }
-    dest[i] = '\0';
-    return (dest);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 /*
 int main(void)

@@ -1,24 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/17 11:37:12 by dshofer           #+#    #+#             */
+/*   Updated: 2026/07/17 11:41:47 by dshofer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
+
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	unsigned int i;
-	
+	unsigned int	i;
+
 	i = 0;
-	while(i != n)
+	while (i != n)
 	{
 		if (s1[i] != s2[i])
 		{
 			return (s1[i] - s2[i]);
-			break;
+			break ;
 		}
 		else
 			i++;
 	}
 	return (s1[i] - s2[i]);
-
-			
 }
-
+/*
 int	main(void)
 {
 	char str1[] = "ABCDF";
@@ -27,3 +38,4 @@ int	main(void)
 	char *s2 = &str2[0];	
 	printf("%d", ft_strncmp(s1, s2,3));
 }
+*/

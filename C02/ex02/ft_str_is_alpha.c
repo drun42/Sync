@@ -6,7 +6,7 @@
 /*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 18:07:51 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/13 20:45:20 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/07/17 11:35:13 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -18,8 +18,12 @@ int	ft_str_is_alpha(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (!(str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
+		if (!(str[i] >= 'a' && str[i] <= 'z')
+		{
 			return (0);
+			if (str[i] >= 'A' && str[i] <= 'Z'))
+				return (0);
+		}
 		i++;
 	}
 	return (1);

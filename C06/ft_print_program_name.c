@@ -1,40 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_print_program_name.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/13 17:49:42 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/17 11:30:21 by dshofer          ###   ########.fr       */
+/*   Created: 2026/07/17 12:25:32 by dshofer           #+#    #+#             */
+/*   Updated: 2026/07/17 12:35:02 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+#include <unistd.h>
+
+int	main(int argc, char *argv[]) 
 {
-	unsigned int	i;
-
-	i = 0;
-	while (src[i] != '\0' && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
-}
-
-/*
- * int main(void)
- * {
- * 	char src[] = "abcde";
- * 	char dest[] = "pizda";
- * 	printf("%s", strncpy(dest, src, 5));
- * 	printf("\n%s", strncpy(dest, src, 5));
- * 	return (0);
- * }
- */
+	write(1, argv[0]);
+	return 0;
+}   
