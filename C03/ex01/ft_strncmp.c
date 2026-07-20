@@ -6,7 +6,7 @@
 /*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 11:37:12 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/20 09:08:21 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/07/20 09:09:16 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	}
 	return (0);
 }
+/*
 int	main(void)
 {
 	char str1[] = "";
 	char str2[] = "ABCDE";	
 	printf("%d", ft_strncmp(str1, str2, 0));
 }
-
+*/
