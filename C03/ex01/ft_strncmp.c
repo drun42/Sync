@@ -6,7 +6,7 @@
 /*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 11:37:12 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/17 11:41:47 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/07/20 09:08:21 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,12 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 		else
 			i++;
 	}
-	return (s1[i] - s2[i]);
+	return (0);
 }
-/*
 int	main(void)
 {
-	char str1[] = "ABCDF";
-	char str2[] = "ABCDE";
-	char *s1 = &str1[0];
-	char *s2 = &str2[0];	
-	printf("%d", ft_strncmp(s1, s2,3));
+	char str1[] = "";
+	char str2[] = "ABCDE";	
+	printf("%d", ft_strncmp(str1, str2, 0));
 }
-*/
+
