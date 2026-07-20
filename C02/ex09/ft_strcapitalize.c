@@ -6,7 +6,7 @@
 /*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 22:45:03 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/13 23:45:41 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/07/20 08:39:25 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -14,9 +14,13 @@
 char	*ft_strcapitalize(char *str)
 // passing as argument pointer to a string so litterally str[0]
 {
-	while (*str)
+	int 	i;
+
+	i = 0;
+	while (str[i])
 	{
-		if (*(str - 1) == 32 && *str >= 'a' && *str <= 'z')
+		if str[i - 1] !(str[i - 1] >= 'a'&&  str[i-1]  
+&& str[i] >= 'a' && *str <= 'z'
 			*str -= 32;
 		if (*(str -1) == (*str >= '\0' && *str <= ' '))
 			if ((*str >= 'A' && *str <= 'Z'))
