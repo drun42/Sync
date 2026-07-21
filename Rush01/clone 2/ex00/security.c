@@ -30,7 +30,10 @@ int	double_check(int grid[4][4], int row, int col, int num)
 	}
 	return (1);
 }
-
+/*
+1 if num is unique in its row and column
+0 if a duplicate is found
+*/
 int	check_col_up(int grid[4][4], int col, int target)
 {
 	int	i;
@@ -53,7 +56,10 @@ int	check_col_up(int grid[4][4], int col, int target)
 		return (1);
 	return (0);
 }
-
+/*
+1 if the count of visible buildings equals target
+0 otherwise
+*/
 int	check_col_down(int grid[4][4], int col, int target)
 {
 	int	i;
@@ -76,7 +82,10 @@ int	check_col_down(int grid[4][4], int col, int target)
 		return (1);
 	return (0);
 }
-
+/*
+1 if the count of visible buildings equals target
+0 otherwise
+*/
 int	check_row_left(int grid[4][4], int row, int target)
 {
 	int	i;

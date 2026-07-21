@@ -22,7 +22,7 @@ int	error1(int argc, char **argv)
 	}
 	return (0);
 }
-
+/*Validates that every character in argv[1] is either a space ' ' or a digit between '1' and '4'*/
 int	error2(int argc, char **argv)
 {
 	(void)argc;
@@ -41,7 +41,7 @@ int	error2(int argc, char **argv)
 	}
 	return (0);
 }
-
+/*it verify the the rows*/
 int	error3(int argc, char **argv)
 {
 	(void)argc;
@@ -64,7 +64,7 @@ int	error3(int argc, char **argv)
 	}
 	return (0);
 }
-
+/*checks row-related clue pairs from the input string argv[1]*/
 int	error4(int argc, char **argv)
 {
 	(void)argc;
@@ -87,7 +87,7 @@ int	error4(int argc, char **argv)
 	}
 	return (0);
 }
-
+/*checks column-related clue pairs from the input string argv[1*/
 int	final_error(int argc, char **argv)
 {
 	if (error1(argc, argv) == 1)
@@ -100,3 +100,7 @@ int	final_error(int argc, char **argv)
 		return (1);
 	return (0);
 }
+/*
+If any check fails, it immediately returns 1.
+If all checks pass, it returns 0.
+*/

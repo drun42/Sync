@@ -1,24 +1,22 @@
 #include <stdio.h>
+
 int	ft_strcmp(char *s1, char *s2)
+
 {
-	/* compare *s1 et *s2
-	 * compar echaracther by character and stop at the first character and return the difference between these two characters*/
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(s1[i] || s2[i])
+	while (s1[i] || s2[i])
 	{
 		if (s1[i] != s2[i])
 		{
 			return (s1[i] - s2[i]);
-			break;
+			break ;
 		}
 		else
 			i++;
 	}
 	return (s1[i] - s2[i]);
-
-			
 }
 /*
 int	main(void)

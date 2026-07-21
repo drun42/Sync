@@ -13,12 +13,12 @@
 
 char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	int i;
-	unsigned int j;
+	int	i;
+	unsigned int	j;
 
 	i = 0;
 	j = 0;
-	 while (dest[i])
+	while (dest[i])
 	{
 		i++;
 	}
@@ -30,10 +30,10 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 			i++;
 			j++;
 		}
-		break;
+		break ;
 	}
 	dest[i] = '\0';
-	return(dest);
+	return (dest);
 }
 /*
 int	main(void)
