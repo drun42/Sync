@@ -26,7 +26,6 @@ int	ft_str_is_alpha(char *str)
 		i++;
 	}
 	return (1);
-
 }
 /*
 int	main(void)
