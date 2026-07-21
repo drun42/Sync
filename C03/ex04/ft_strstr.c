@@ -1,9 +1,29 @@
+
+int needle_check(char)
+{
+	
+}
+
 char *ft_strstr(char *str, char *to_find)
 {
 	//finds the first occurrence of the substring needle in the string haystack.
+	int	i;
+	int	i2;
+	int	temp;
+
+	i = 0;
+	i2 = 0;
 	while(haystack[i])
 	{
-		while
+		if(haystack[i] == needle[i2])
+		{
+			temp = i;
+			while(needle[i2])
+			{
+				if (needle[i2] == haystack[i])
+
+			}
+		}
 			
 	}
 

@@ -5,15 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 14:43:25 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/20 10:28:24 by dshofer          ###   ########.fr       */
+/*   Created: 2026/07/21 14:27:41 by dshofer           #+#    #+#             */
+/*   Updated: 2026/07/21 14:27:45 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdio.h>
 
 char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	int	i;
+	unsigned int	i;
 	unsigned int	j;
 
 	i = 0;
