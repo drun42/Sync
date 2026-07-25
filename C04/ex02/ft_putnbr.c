@@ -6,7 +6,7 @@
 /*   By: dshofer <dshofer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 23:58:54 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/24 02:36:32 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/07/24 11:22:50 by us               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -33,9 +33,3 @@ void	ft_putnbr(int nb)
 		ft_putchar(nb + '0');
 	}
 }
-/*
-int main (void)
-{
-	ft_putnbr(42);
-}
-*/
