@@ -6,7 +6,7 @@
 /*   By: dshofer <dshofer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 23:58:54 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/26 02:37:52 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/07/26 02:44:38 by us               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -19,7 +19,10 @@ void	ft_putchar(char c)
 void	ft_putnbr(int nb)
 {
 	if (nb == -2147483648)
-			write(1, "-2147483648", 11);
+	{
+		write(1, "-2147483648", 11);
+		return;
+	}
 	if (nb < 0)
 	{
 		ft_putchar('-');
