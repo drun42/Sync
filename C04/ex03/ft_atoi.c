@@ -3,24 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dshofer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: us <marvin@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/26 00:04:19 by us                #+#    #+#             */
-/*   Updated: 2026/07/26 00:55:45 by us               ###   ########.fr       */
+/*   Created: 2026/07/25 23:35:05 by us                #+#    #+#             */
+/*   Updated: 2026/07/26 02:10:37 by us               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_atoi.c (char *str)
-{
-	int i;
-	int sign;
+#include <stdio.h>
 
-	sign =1;
-	i = 0;
-	while (str[i] == ' ')
-		i++;
-	while (str[i] !(str[i] >= '0' && str[i] <= '0'))
-	{
-		if str[i] == '-'
-			sign  = sgn * str[i]
+int ft_atoi(const char *s) 
+{ 
+	int	sign = 1, n = 0; 
+	
+	while (*s == ' ' || *s == '\t' || *s == '\n') 
+		s++; 
+	if (*s == '-')
+	{	
+		sign = -1;
+		s++; 
 	}
+	else if (*s == '+') 
+		s++; 
+	while (*s >= '0' && *s <= '9') 
+	{
+		//n = n * 10 + (*s++ - '0'); 
+		n = n * 10 + (*s - '0');
+		*s++;
+	}	
+	return sign * n; 
 }
+/*
+int             main(void)
+{
+        char a[] = "  -523 4AAAgreghrsth";//-5234
+        printf("%d\n",ft_atoi(a));
+}
+*/
