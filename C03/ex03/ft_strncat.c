@@ -6,7 +6,7 @@
 /*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 14:27:41 by dshofer           #+#    #+#             */
-/*   Updated: 2026/07/21 14:27:45 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/07/26 04:20:59 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 	}
 	while (src[j])
 	{
-		while (j < nb)
+		while (j < nb && src[j] && dest[i])
 		{
 			dest[i] = src[j];
 			i++;
@@ -44,10 +44,10 @@ int	main(void)
 	unsigned int nb;
 
 	nb = 3;	
-	printf("%s\n",ft_strncat(dest, src, 3));
-	printf("%s\n",ft_strncat(dest, src, 9));
+//	printf("%s\n",ft_strncat(dest, src, 3));
+//	printf("%s\n",ft_strncat(dest, src, 9));
 	printf("%s\n",ft_strncat(dest, src, 35));
-	printf("%s\n",ft_strncat(dest, src, 0));
+//	printf("%s\n",ft_strncat(dest, src, 0));
 
 }
 */

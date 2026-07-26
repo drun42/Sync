@@ -6,28 +6,31 @@
 /*   By: us <marvin@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 23:35:05 by us                #+#    #+#             */
-/*   Updated: 2026/07/26 02:54:25 by us               ###   ########.fr       */
+/*   Updated: 2026/07/26 03:41:30 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 
-int ft_atoi(const char *str) 
-{ 
-	int	sign = 1, n = 0; 
-	
-	while (*str == ' ' || *str == '\t' || *str == '\n') 
-		str++; 
+int	ft_atoi(const char *str)
+{
+	int	sign;
+	int	n;
+
+	sign = 1;
+	n = 0;
+	while (*str == ' ' || *str == '\t' || *str == '\n')
+		str++;
 	while (*str == '+' || *str == '-')
 	{
 		if (*str == '-')
 			sign *= -1;
 		str++;
 	}
-	while (*str >= '0' && *str <= '9') 
+	while (*str >= '0' && *str <= '9')
 	{
 		n = n * 10 + (*str++ - '0');
-	}	
-	return sign * n; 
+	}
+	return (sign * n);
 }
 /*
 int             main(void)
