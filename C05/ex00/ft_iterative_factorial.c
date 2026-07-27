@@ -3,6 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: us <marvin@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 06:30:45 by us                #+#    #+#             */
@@ -23,4 +24,16 @@ int	ft_iterative_factorial(int nb)
 		nb--;
 	}
 	return (result);
+=======
+/*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/26 05:49:41 by dshofer           #+#    #+#             */
+/*   Updated: 2026/07/26 08:11:50 by dshofer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+int ft_iterative_factorial(int nb);
+{
+	if (nb 
+>>>>>>> d8651934a77356e02cf9fd58658e6f36b4bb7117
 }
