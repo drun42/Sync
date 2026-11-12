@@ -6,10 +6,10 @@
 /*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 14:21:27 by dshofer           #+#    #+#             */
-/*   Updated: 2026/10/08 15:27:13 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/11/11 20:15:52 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include "lift.h"
 
 char	ft_bzero(void *s, size_t n)
 {
@@ -24,20 +24,3 @@ char	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
-/*
-int	main(void)
-{
-	size_t	n = 3;
-	char buf[10];
-
-	for (int i = 0; i < n+1; i++)
-	{
-		printf("%d\n",buf[i]);
-	}
-	ft_bzero(buf, n);
-	for (int i = 0; i < n+1; i++)
-	{
-		printf("%d\n", buf[i]);
-	}
-}
-*/

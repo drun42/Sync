@@ -1,8 +1,43 @@
-hello: ft_memset.c ft_bzero.c
-	cc ft_memset.c -Wall -Wextra -Werror -o ft_memset
-	cc ft_bzero.c -Wall -Wextra -Werror -o ft_bzero
 
+SRC = ft_memset.c ft_bzero.c ft_strcmp.c
+
+OBJ = $(SRC:.c=.o)
+
+NAME = libft.a
+
+CC = cc
+
+CFLAGS = -Wall -Wextra -Werror
+
+MAIN = test_main.c
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+#  ($<) the first dependency / ($@) the target file / (%) same behaviour as * in bash
+
+.PHONY: all clean fclean re
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
 clean:
-	rm -f  ft_memset
-	rm -f  ft_bzero
+	rm -f  $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: $(NAME)
+	make fclean
+	make all
+
+test: $(NAME) $(MAIN)
+	make re
+	$(CC) $(CFLAGS) $(NAME) $(MAIN)
+	./a.out
+
+comp: $(SRC)
+	$(CC) $(CFLAGS) $(SRC)
+
+
