@@ -1,0 +1,58 @@
+[4mmemcpy[24m(3)                       Library Functions Manual                       [4mmemcpy[24m(3)
+
+[1mNAME[0m
+       memcpy - copy memory area
+
+[1mLIBRARY[0m
+       Standard C library ([4mlibc[24m, [4m-lc[24m)
+
+[1mSYNOPSIS[0m
+       [1m#include <string.h>[0m
+
+       [1mvoid *memcpy(void [4m[22mdest[24m[1m[restrict .[4m[22mn[24m[1m], const void [4m[22msrc[24m[1m[restrict .[4m[22mn[24m[1m],[0m
+                    [1msize_t [4m[22mn[24m[1m);[0m
+
+[1mDESCRIPTION[0m
+       The  [1mmemcpy[22m()  function  copies [4mn[24m bytes from memory area [4msrc[24m to memory area [4mdest[24m.
+       The memory areas must not overlap.  Use [1mmemmove[22m(3) if the memory areas  do  over‐
+       lap.
+
+[1mRETURN VALUE[0m
+       The [1mmemcpy[22m() function returns a pointer to [4mdest[24m.
+
+[1mATTRIBUTES[0m
+       For an explanation of the terms used in this section, see [1mattributes[22m(7).
+       ┌─────────────────────────────────────────────────────┬───────────────┬─────────┐
+       │ [1mInterface                                           [22m│ [1mAttribute     [22m│ [1mValue   [22m│
+       ├─────────────────────────────────────────────────────┼───────────────┼─────────┤
+       │ [1mmemcpy[22m()                                            │ Thread safety │ MT-Safe │
+       └─────────────────────────────────────────────────────┴───────────────┴─────────┘
+
+[1mSTANDARDS[0m
+       C11, POSIX.1-2008.
+
+[1mHISTORY[0m
+       POSIX.1-2001, C89, SVr4, 4.3BSD.
+
+[1mCAVEATS[0m
+       Failure  to observe the requirement that the memory areas do not overlap has been
+       the source of significant bugs.  (POSIX and the C standards are explicit that em‐
+       ploying [1mmemcpy[22m() with overlapping areas produces undefined behavior.)   Most  no‐
+       tably,  in  glibc  2.13  a performance optimization of [1mmemcpy[22m() on some platforms
+       (including x86-64) included changing the order in which bytes  were  copied  from
+       [4msrc[24m to [4mdest[24m.
+
+       This change revealed breakages in a number of applications that performed copying
+       with  overlapping  areas.   Under the previous implementation, the order in which
+       the bytes were copied had fortuitously hidden the bug, which  was  revealed  when
+       the  copying  order was reversed.  In glibc 2.14, a versioned symbol was added so
+       that old binaries (i.e., those linked against glibc versions earlier  than  2.14)
+       employed  a  [1mmemcpy[22m()  implementation that safely handles the overlapping buffers
+       case (by providing an "older" [1mmemcpy[22m() implementation that was  aliased  to  [1mmem‐[0m
+       [1mmove[22m(3)).
+
+[1mSEE ALSO[0m
+       [1mbcopy[22m(3),  [1mbstring[22m(3), [1mmemccpy[22m(3), [1mmemmove[22m(3), [1mmempcpy[22m(3), [1mstrcpy[22m(3), [1mstrncpy[22m(3),
+       [1mwmemcpy[22m(3)
+
+Linux man-pages 6.7                    2023-10-31                              [4mmemcpy[24m(3)

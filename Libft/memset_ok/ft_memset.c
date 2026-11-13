@@ -6,7 +6,7 @@
 /*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 10:51:28 by dshofer           #+#    #+#             */
-/*   Updated: 2026/11/12 23:25:18 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/11/13 14:12:48 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <string.h>
@@ -20,7 +20,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	a = (char *)s;
 	while (i < n)
 	{
-		a[i] =(unsigned char) c;
+		a[i] = (unsigned char)c;
 		i++;
 	}
 	return (a);
