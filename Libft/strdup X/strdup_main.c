@@ -29,44 +29,56 @@ char	*dup;
 char	*empty;
 
 	//base case : same content
-	printf("%s\n", "Base Case:");
+	printf("%s\n", "Base Case, ft_strdup(\"likun\"):");
 	dup = ft_strdup(src);
-	printf("dup : [%s]  src : [%s]\n", dup, src);
-	printf("content equal : %d\n", strcmp(dup, src) == 0);
+	printf("expected : [likun]\n");
+	printf("actual   : [%s]\n", dup);
+	printf("%s\n", "Base Case, strcmp(dup, src) == 0:");
+	printf("%s\n", "expected : 1");
+	printf("actual   : %d\n", strcmp(dup, src) == 0);
 	printf("%s\n"," ");
 
 	//the copy must be a different block of memory, not the same pointer
-	printf("%s\n", "New Memory Case:");
-	printf("dup != src : %d\n", dup != src);
+	printf("%s\n", "New Memory Case, dup != src:");
+	printf("%s\n", "expected : 1");
+	printf("actual   : %d\n", dup != src);
 	printf("%s\n"," ");
 
 	//the copy must be terminated, and exactly strlen(src) bytes long
-	printf("%s\n", "Termination Case:");
-	printf("len equal : %d\n", strlen(dup) == strlen(src));
-	printf("dup[strlen] == '\\0' : %d\n", dup[strlen(src)] == '\0');
+	printf("%s\n", "Termination Case, strlen(dup):");
+	printf("expected : %zu\n", strlen(src));
+	printf("actual   : %zu\n", strlen(dup));
+	printf("%s\n", "Termination Case, dup[strlen(src)] == '\\0':");
+	printf("%s\n", "expected : 1");
+	printf("actual   : %d\n", dup[strlen(src)] == '\0');
 	printf("%s\n"," ");
 
 	//writing into the copy must not touch the original
-	printf("%s\n", "Independence Case:");
+	printf("%s\n", "Independence Case, dup[0] = 'X':");
 	dup[0] = 'X';
-	printf("dup : [%s]  src : [%s]  expected : [Xikun] [likun]\n", dup, src);
+	printf("expected : dup [Xikun]  src [likun]\n");
+	printf("actual   : dup [%s]  src [%s]\n", dup, src);
 	free(dup);
 	printf("%s\n", "dup freed");
 	printf("%s\n"," ");
 
 	//empty string : still a valid, non NULL, freeable pointer
-	printf("%s\n", "Empty String Case:");
+	printf("%s\n", "Empty String Case, ft_strdup(\"\") != NULL:");
 	empty = ft_strdup("");
-	printf("not NULL : %d\n", empty != NULL);
-	printf("len 0 : %d\n", strlen(empty) == 0);
+	printf("%s\n", "expected : 1");
+	printf("actual   : %d\n", empty != NULL);
+	printf("%s\n", "Empty String Case, strlen(empty):");
+	printf("%s\n", "expected : 0");
+	printf("actual   : %zu\n", strlen(empty));
 	free(empty);
 	printf("%s\n", "empty freed");
 	printf("%s\n"," ");
 
 	//stops at the first '\0', nothing behind it is copied
-	printf("%s\n", "Embedded '\\0' Case:");
+	printf("%s\n", "Embedded '\\0' Case, ft_strdup(\"abc\\0def\"):");
 	dup = ft_strdup("abc\0def");
-	printf("dup : [%s]  len : %zu  expected len : 3\n", dup, strlen(dup));
+	printf("expected : [abc] len 3\n");
+	printf("actual   : [%s] len %zu\n", dup, strlen(dup));
 	free(dup);
 	printf("%s\n", "dup freed");
 	printf("%s\n"," ");
