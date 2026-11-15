@@ -27,6 +27,8 @@ char	refd [10];
 char	buf [11];
 char	refb [11];
 void	*ret;
+void	*rref;
+char	*z;
 
 n = 5;
 
@@ -97,10 +99,38 @@ void compare_buf(void)
 
 	//return value is dest
 	clear();
-	printf("%s\n", "Return Value Case:");
+	printf("%s\n", "Return Value Case, ret == dest:");
 	ret = ft_memmove(dest, src, n);
 	printf("%s\n", "expected : 1");
 	printf("actual   : %d\n", ret == (void *)dest);
+	printf("%s\n"," ");
+
+	//both calls run on the SAME buffer, so both must hand back that buffer
+	clear();
+	printf("%s\n", "Return Value Case, libc and ft return the same pointer:");
+	rref = memmove(dest, src, n);
+	ret = ft_memmove(dest, src, n);
+	printf("%s\n", "expected : 1");
+	printf("actual   : %d\n", ret == rref && ret == (void *)dest);
+	printf("%s\n"," ");
+
+	//n = 0 with an UNREADABLE src : z - 1 points one byte before a string
+	//literal, so reading even a single byte from it is out of bounds
+	//only a function that never touches src when n is 0 survives this, and
+	//it must still return dest
+	z = "";
+	printf("%s\n", "n = 0 Case, invalid src, ft_memmove(z, z - 1, 0):");
+	rref = memmove(z, z - 1, 0);
+	ret = ft_memmove(z, z - 1, 0);
+	printf("%s\n", "expected : 1");
+	printf("actual   : %d\n", ret == rref && ret == (void *)z);
+	printf("%s\n"," ");
+
+	//n = 0 must not write into dest either, whatever src is
+	clear();
+	printf("%s\n", "n = 0 Case, dest untouched with an invalid src:");
+	ft_memmove(dest, z - 1, 0);
+	compare_dest();
 	printf("%s\n"," ");
 
 	//bytes, not a string : a '\0' inside src does not stop the copy
