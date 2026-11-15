@@ -13,130 +13,127 @@
 #include <stdio.h>
 #include <string.h>
 
-size_t n = 5;
+//man prototype
 void	*ft_memmove(void *dest, const void *src, size_t n);
 
 int main(void)
 {
-//man: copies n bytes from src to dest, areas MAY OVERLAP, returns dest
-size_t	x;
-x = 10;
-
-char	src [x];
-char	dest [x];
+//man: copies n bytes from src to dest, the areas MAY OVERLAP, returns dest
+//expected is produced by the libc function on a reference buffer
+size_t	n;
+char	src [10];
+char	dest [10];
+char	refd [10];
 char	buf [11];
+char	refb [11];
 void	*ret;
 
-char *srcc;
-
-srcc = (char*)src;
+n = 5;
 
 
-void clear(char *d, char *s,  size_t x)
+void clear(void)
 {
-	memset(d, 0, x);
-	memset(s, 7, x);
-	printf("%s\n", "src and dest cleared");
-
+	memset(src, 7, 10);
+	memset(dest, 0, 10);
+	memset(refd, 0, 10);
 }
 
 
-
-void src_dest_print(char *d, char *s, size_t x)
+void bytes_print(char *b)
 {
-	//printing both buffers as bytes
-	printf("%s\n","src :");
-        for (size_t i = 0; i < x; i++)
-        {
-                printf("%d",s[i]);
-        }
-	printf("%s\n"," ");
-	printf("%s\n", "dest :");
-
-       	for (size_t i = 0; i < x; i++)
-        {
-                printf("%d",d[i]);
-        }
-	printf("%s\n"," ");
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d", b[i]);
+	}
+	printf("%s\n", "");
 }
 
 
-
-void buf_reset(char *b)
+void compare_dest(void)
 {
-	memcpy(b, "0123456789", 11);
+	printf("%s", "expected : ");
+	bytes_print(refd);
+	printf("%s", "actual   : ");
+	bytes_print(dest);
 }
 
 
-
-void buf_print(char *b)
+void bufs_reset(void)
 {
-	printf("buf : %s\n", b);
+	memcpy(buf, "0123456789", 11);
+	memcpy(refb, "0123456789", 11);
+}
+
+
+void compare_buf(void)
+{
+	printf("expected : %s\n", refb);
+	printf("actual   : %s\n", buf);
 }
 
 
 	//memory state
-	printf("%s\n", "Memory state:");
-	src_dest_print(dest, src, x);
-	clear(dest, src, x);
-	src_dest_print(dest, src, x);
+	clear();
+	printf("%s\n", "Memory state (src = 7, dest = 0):");
+	printf("src      : ");
+	bytes_print(src);
+	compare_dest();
 	printf("%s\n"," ");
 
 	//base case, no overlap
-	printf("%s\n", "Base Case (no overlap):");
+	printf("%s\n", "Base Case (no overlap), memmove(dest, src, 5):");
+	memmove(refd, src, n);
 	ft_memmove(dest, src, n);
-	printf("%s\n", "memmove used");
-	src_dest_print(dest, src,  x);
-	clear(dest, src, x);
+	compare_dest();
 	printf("%s\n"," ");
 
-	//n = 0
+	//n = 0 : dest must stay untouched
+	clear();
 	printf("%s\n", "n = 0 Case:");
+	memmove(refd, src, 0);
 	ft_memmove(dest, src, 0);
-	src_dest_print(dest, src, x);
-	clear(dest, src, x);
+	compare_dest();
 	printf("%s\n"," ");
 
-	//return value
+	//return value is dest
+	clear();
 	printf("%s\n", "Return Value Case:");
 	ret = ft_memmove(dest, src, n);
-	printf("ret == dest : %d\n", ret == (void *)dest);
-	clear(dest, src, x);
+	printf("%s\n", "expected : 1");
+	printf("actual   : %d\n", ret == (void *)dest);
 	printf("%s\n"," ");
 
-	//bytes, not a string
+	//bytes, not a string : a '\0' inside src does not stop the copy
+	clear();
+	src[2] = 0;
 	printf("%s\n", "Byte iteration check (copies past '\\0'):");
-	srcc[2] = 0;
+	memmove(refd, src, n);
 	ft_memmove(dest, src, n);
-	printf("%s\n", "memmove used");
-	src_dest_print(dest, src,  x);
-	clear(dest, src, x);
+	compare_dest();
 	printf("%s\n"," ");
 
-	//overlap, dest after src
-	printf("%s\n", "Overlap Case, dest > src :");
-	buf_reset(buf);
-	buf_print(buf);
+	//overlap, dest after src : a plain forward copy destroys src
+	bufs_reset();
+	printf("%s\n", "Overlap Case, dest > src, memmove(buf + 3, buf, 5):");
+	memmove(refb + 3, refb, n);
 	ft_memmove(buf + 3, buf, n);
-	buf_print(buf);
-	printf("%s\n", "expected : 0120123489");
+	compare_buf();
 	printf("%s\n"," ");
 
 	//overlap, dest before src
-	printf("%s\n", "Overlap Case, dest < src :");
-	buf_reset(buf);
-	buf_print(buf);
+	bufs_reset();
+	printf("%s\n", "Overlap Case, dest < src, memmove(buf, buf + 3, 5):");
+	memmove(refb, refb + 3, n);
 	ft_memmove(buf, buf + 3, n);
-	buf_print(buf);
-	printf("%s\n", "expected : 3456756789");
+	compare_buf();
 	printf("%s\n"," ");
 
-	//dest and src are the same
-	printf("%s\n", "Overlap Case, dest == src :");
-	buf_reset(buf);
+	//dest and src are the same address
+	bufs_reset();
+	printf("%s\n", "Overlap Case, dest == src:");
+	memmove(refb, refb, n);
 	ft_memmove(buf, buf, n);
-	buf_print(buf);
-	printf("%s\n", "expected : 0123456789");
+	compare_buf();
 	printf("%s\n"," ");
 
 }
