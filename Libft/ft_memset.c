@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/21 14:18:40 by dshofer           #+#    #+#             */
-/*   Updated: 2026/11/11 19:58:19 by dshofer          ###   ########.fr       */
+/*   Created: 2026/10/06 10:51:28 by dshofer           #+#    #+#             */
+/*   Updated: 2026/11/14 14:57:12 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <string.h>
 #include "libft.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
-
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int	i;
+	char	*a;
+	size_t	i;
 
 	i = 0;
-	while (s1[i] && s2[i])
+	a = (char *)s;
+	while (i < n)
 	{
-		if (s1[i] != s2[i])
-		{
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		}
-		else
-			i++;
+		a[i] = (unsigned char)c;
+		i++;
 	}
-	if (s1[i] == s2[i])
-	{
-		return (0);
-	}
-	else
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (a);
 }

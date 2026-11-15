@@ -6,13 +6,14 @@
 /*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 14:18:40 by dshofer           #+#    #+#             */
-/*   Updated: 2026/11/12 15:43:46 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/11/11 19:58:19 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
+#include "libft.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
+
 {
 	int	i;
 

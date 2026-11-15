@@ -1,5 +1,5 @@
 
-SRC = ft_memset.c ft_bzero.c ft_strcmp.c
+SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c
 
 OBJ = $(SRC:.c=.o)
 
