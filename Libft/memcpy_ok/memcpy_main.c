@@ -6,89 +6,97 @@
 /*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 14:33:36 by dshofer           #+#    #+#             */
-/*   Updated: 2026/11/14 13:11:27 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/11/15 00:00:00 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdio.h>
 #include <string.h>
 
-size_t n = 5;
-void *ft_memcpy(void *dest, const void *src, size_t n);
+//man prototype
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 int main(void)
 {
-//return
+//man: copies n bytes from src to dest, the areas must NOT overlap, returns dest
+//expected is produced by libc memcpy on ref, actual by ft_memcpy on dest
 size_t	x;
-x = 10; 
+size_t	n;
+
+x = 10;
+n = 5;
+
 char	src [x];
 char	dest [x];
-
-char *srcc;
-
-srcc = (char*)src;
+char	ref [x];
+void	*ret;
 
 
-void clear(char *d, char *s,  size_t x)
+void clear(void)
 {
-	memset(d, 0, x);
-	memset(s, 7, x);
-	printf("%s\n", "mem and dest cleared");
-
+	memset(src, 7, x);
+	memset(dest, 0, x);
+	memset(ref, 0, x);
 }
 
 
-
-void src_dest_print(char *d, char *s, size_t x)
+void bytes_print(char *b)
 {
-	//printing both strings
-	printf("%s\n","src :");
-        for (size_t i = 0; i < x; i++)
-        {
-                printf("%d",s[i]);
-        }
-	printf("%s\n"," ");
-	printf("%s\n", "dest :");
+	for (size_t i = 0; i < x; i++)
+	{
+		printf("%d", b[i]);
+	}
+	printf("%s\n", "");
+}
 
-       	for (size_t i = 0; i < x; i++)
-        {
-                printf("%d",d[i]);
-        }
-	printf("%s\n"," ");
+
+void compare(void)
+{
+	printf("%s", "expected : ");
+	bytes_print(ref);
+	printf("%s", "actual   : ");
+	bytes_print(dest);
 }
 
 
 	//memory state
-	 printf("%s\n", "Memory tsate:");
-	src_dest_print(dest, src, x);
-	clear(dest, src, x);
-	src_dest_print(dest, src, x);
+	clear();
+	printf("%s\n", "Memory state (src = 7, dest = 0):");
+	printf("src      : ");
+	bytes_print(src);
+	compare();
 	printf("%s\n"," ");
 
 	//base case
-	printf("%s\n", "Base Case:");
+	printf("%s\n", "Base Case, memcpy(dest, src, 5):");
+	memcpy(ref, src, n);
 	ft_memcpy(dest, src, n);
-	printf("%s\n", "memcpy used");
-	src_dest_print(dest, src,  x);
-	clear(dest, src, x);
+	compare();
 	printf("%s\n"," ");
 
-	//n = 0 
+	//n = 0 : dest must stay untouched
+	clear();
 	printf("%s\n", "n = 0 Case:");
+	memcpy(ref, src, 0);
 	ft_memcpy(dest, src, 0);
-	src_dest_print(dest, src, x);
-        clear(dest, src, x);
+	compare();
 	printf("%s\n"," ");
 
-	//string iteration check
-	printf("%s\n", "String/byte iteration check :");
-	srcc[3] = '\0';
+	//bytes, not a string : a '\0' inside src does not stop the copy
+	clear();
+	src[3] = 0;
+	printf("%s\n", "Byte iteration check (copies past '\\0'):");
+	memcpy(ref, src, n);
 	ft_memcpy(dest, src, n);
-	printf("%s\n", "memcpy used");
-	src_dest_print(dest, src,  x);
-	clear(dest, src, x);
+	compare();
 	printf("%s\n"," ");
 
-
+	//return value
+	clear();
+	printf("%s\n", "Return Value Case:");
+	ret = ft_memcpy(dest, src, n);
+	printf("%s\n", "expected : 1");
+	printf("actual   : %d\n", ret == (void *)dest);
+	printf("%s\n"," ");
 
 }
-
