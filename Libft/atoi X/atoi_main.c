@@ -22,6 +22,7 @@ int main(void)
 //man: behaves as strtol(nptr, NULL, 10), minus the error detection
 //strtol: optional whitespace, then ONE optional sign, then digits, then stop
 //out of range input is undefined behavior, so it is not tested here
+//expected is produced by libc atoi
 char	*tab [20];
 size_t	i;
 
@@ -56,24 +57,31 @@ tab[18] = "2147483647";
 tab[19] = "-2147483648";
 
 
-	//every case against libc atoi
-	printf("%s\n", "Cases (ft vs libc):");
+	//base cases
+	printf("%s\n", "Base Cases:");
 	i = 0;
 	while (i < 20)
 	{
-		printf("[%-22s] ft : %12d  libc : %12d  match : %d\n", tab[i],
-			ft_atoi(tab[i]), atoi(tab[i]),
-			ft_atoi(tab[i]) == atoi(tab[i]));
+		printf("case     : [%s]\n", tab[i]);
+		printf("expected : %d\n", atoi(tab[i]));
+		printf("actual   : %d\n", ft_atoi(tab[i]));
 		i++;
 	}
 	printf("%s\n"," ");
 
 	//the whitespace set and the single sign rule are the two usual traps
-	printf("%s\n", "Trap Cases:");
-	printf("\" \\t\\n\\v\\f\\r7\" must be 7 : %d\n", ft_atoi(" \t\n\v\f\r7") == 7);
-	printf("\"+-5\" must be 0 : %d\n", ft_atoi("+-5") == 0);
-	printf("\"--5\" must be 0 : %d\n", ft_atoi("--5") == 0);
-	printf("\"- 42\" must be 0 : %d\n", ft_atoi("- 42") == 0);
+	printf("%s\n", "Trap Case, \" \\t\\n\\v\\f\\r7\":");
+	printf("%s\n", "expected : 7");
+	printf("actual   : %d\n", ft_atoi(" \t\n\v\f\r7"));
+	printf("%s\n", "Trap Case, \"+-5\":");
+	printf("%s\n", "expected : 0");
+	printf("actual   : %d\n", ft_atoi("+-5"));
+	printf("%s\n", "Trap Case, \"--5\":");
+	printf("%s\n", "expected : 0");
+	printf("actual   : %d\n", ft_atoi("--5"));
+	printf("%s\n", "Trap Case, \"- 42\":");
+	printf("%s\n", "expected : 0");
+	printf("actual   : %d\n", ft_atoi("- 42"));
 	printf("%s\n"," ");
 
 }
