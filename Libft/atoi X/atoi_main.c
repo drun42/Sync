@@ -1,0 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   atoi_main.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/15 00:00:00 by dshofer           #+#    #+#             */
+/*   Updated: 2026/11/15 00:00:00 by dshofer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//man prototype : const qualifier
+int	ft_atoi(const char *nptr);
+
+int main(void)
+{
+//man: converts the INITIAL PORTION of the string to int
+//man: behaves as strtol(nptr, NULL, 10), minus the error detection
+//strtol: optional whitespace, then ONE optional sign, then digits, then stop
+//out of range input is undefined behavior, so it is not tested here
+char	*tab [20];
+size_t	i;
+
+//plain digits
+tab[0] = "42";
+//leading whitespace, sign, trailing garbage
+tab[1] = "  -523 4AAAgreghrsth";
+tab[2] = "+42";
+tab[3] = "-42";
+//the full isspace set : space \t \n \v \f \r
+tab[4] = " \t\n\v\f\r7";
+//no digits at all
+tab[5] = "";
+tab[6] = "abc";
+tab[7] = "a42";
+//sign with nothing behind it
+tab[8] = "+";
+tab[9] = "-";
+//more than one sign : conversion stops, nothing is read
+tab[10] = "++5";
+tab[11] = "--5";
+tab[12] = "+-5";
+tab[13] = "-+5";
+//whitespace is allowed BEFORE the sign only
+tab[14] = "- 42";
+//digits then non digits
+tab[15] = "42abc";
+tab[16] = "0042";
+tab[17] = "1 2";
+//the two int limits
+tab[18] = "2147483647";
+tab[19] = "-2147483648";
+
+
+	//every case against libc atoi
+	printf("%s\n", "Cases (ft vs libc):");
+	i = 0;
+	while (i < 20)
+	{
+		printf("[%-22s] ft : %12d  libc : %12d  match : %d\n", tab[i],
+			ft_atoi(tab[i]), atoi(tab[i]),
+			ft_atoi(tab[i]) == atoi(tab[i]));
+		i++;
+	}
+	printf("%s\n"," ");
+
+	//the whitespace set and the single sign rule are the two usual traps
+	printf("%s\n", "Trap Cases:");
+	printf("\" \\t\\n\\v\\f\\r7\" must be 7 : %d\n", ft_atoi(" \t\n\v\f\r7") == 7);
+	printf("\"+-5\" must be 0 : %d\n", ft_atoi("+-5") == 0);
+	printf("\"--5\" must be 0 : %d\n", ft_atoi("--5") == 0);
+	printf("\"- 42\" must be 0 : %d\n", ft_atoi("- 42") == 0);
+	printf("%s\n"," ");
+
+}
