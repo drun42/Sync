@@ -6,7 +6,7 @@
 /*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 00:00:00 by dshofer           #+#    #+#             */
-/*   Updated: 2026/11/15 00:00:00 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/11/21 00:00:00 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,64 @@ int	ft_tolower(int c);
 int main(void)
 {
 //man: converts the letter c to lower case, if possible
-//man: an upper case letter becomes lower case, everything else comes back unchanged
+//man: everything that is not a letter comes back unchanged
 //expected is produced by libc tolower
 int	tab [16];
 int	i;
 int	bad;
 
-tab[0] = 'a';
-tab[1] = 'z';
-tab[2] = 'A';
-tab[3] = 'Z';
-tab[4] = 'g';
-tab[5] = 'G';
-tab[6] = '0';
-tab[7] = '9';
-tab[8] = ' ';
-tab[9] = '\n';
-tab[10] = 0;
-tab[11] = '+';
-tab[12] = '~';
-tab[13] = 127;
-tab[14] = 128;
+//letters that MUST change
+tab[0] = 'A';
+tab[1] = 'Z';
+tab[2] = 'G';
+//letters already in the target case, MUST stay
+tab[3] = 'a';
+tab[4] = 'z';
+tab[5] = 'g';
+//the four ASCII neighbours of the letter ranges, the off by one traps
+tab[6] = '@';
+tab[7] = '[';
+tab[8] = '`';
+tab[9] = '{';
+//other non letters
+tab[10] = '0';
+tab[11] = '9';
+tab[12] = ' ';
+tab[13] = 0;
+tab[14] = 127;
 tab[15] = 255;
 
 
-	//base cases, printed as value then as the character itself
+int vis(int c)
+{
+	if (isprint(c))
+		return (c);
+	return ('.');
+}
+
+
+void show(int c)
+{
+	printf("case %4d '%c'  |  expected %4d '%c'  |  actual %4d '%c'\n",
+		c, vis(c),
+		tolower(c), vis(tolower(c)),
+		ft_tolower(c), vis(ft_tolower(c)));
+}
+
+
+	//base cases, every line shows the value AND the character it stands for
 	printf("%s\n", "Base Cases:");
 	i = 0;
 	while (i < 16)
 	{
-		printf("case     : %d\n", tab[i]);
-		printf("expected : %d\n", tolower(tab[i]));
-		printf("actual   : %d\n", ft_tolower(tab[i]));
+		show(tab[i]);
 		i++;
 	}
 	printf("%s\n"," ");
 
-	//non letters must come back untouched, not zeroed
-	printf("%s\n", "Unchanged Case, ft_tolower('5'):");
-	printf("expected : %d\n", tolower('5'));
-	printf("actual   : %d\n", ft_tolower('5'));
+	//man: the argument must be representable as unsigned char, or equal to EOF
+	printf("%s\n", "EOF Case, ft_tolower(-1):");
+	show(-1);
 	printf("%s\n"," ");
 
 	//whole unsigned char range at once

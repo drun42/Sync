@@ -50,7 +50,7 @@ tab[17] = 255;
 	i = 0;
 	while (i < 18)
 	{
-		printf("case     : %d\n", tab[i]);
+		printf("case     : %d '%c'\n", tab[i], isprint(tab[i]) ? tab[i] : '.');
 		printf("expected : %d\n", isprint(tab[i]) ? 1 : 0);
 		printf("actual   : %d\n", ft_isprint(tab[i]));
 		i++;
