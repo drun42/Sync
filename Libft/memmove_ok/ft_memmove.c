@@ -6,7 +6,7 @@
 /*   By: dshofer <dshofer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 15:33:12 by dshofer           #+#    #+#             */
-/*   Updated: 2026/11/15 10:50:46 by dshofer          ###   ########.fr       */
+/*   Updated: 2026/11/21 15:21:57 by dshofer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	d = (char *)dest;
 	s = (char *)src;
+
+	if (n == 0)
+	{
+		return (d);
+	}
 	if (d == 0 && s == 0)
 	{
 		return (d);
