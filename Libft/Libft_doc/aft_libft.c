@@ -406,12 +406,18 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 ** The trap in the backward branch is the index. It has to start at the
 ** LAST byte, and a size_t is unsigned: it cannot hold a negative value.
 ** Any expression that would go below zero wraps around to a huge number
-** instead. n == 0 is exactly the case where that happens, and it is the
-** case Moulinette tests.
+** instead. Here i = n - 1 is exactly such an expression, and n == 0 is
+** the case that triggers it: the index becomes the largest size_t value
+** and the loop walks off the end of the buffer. Moulinette tests that
+** call. The guard at the top of the function is what makes it safe -
+** with n == 0 there is nothing to copy, so returning at once is both
+** correct and enough.
 **
-** NOTE: the version below is the one currently in Libft_ok. It crashes on
-** ft_memmove(dest, src, 0) when dest is after src. The marked line is
-** where the wrap around happens. Not fixed on purpose: this one is yours.
+** The second branch, if (d == 0 && s == 0), is dead weight: man does not
+** ask for it, and it only triggers when BOTH pointers are NULL. With only
+** dest at NULL the function still writes. Harmless, but it protects
+** nothing.
+**
 ** =========================================================================
 */
 
@@ -423,6 +429,12 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	d = (char *)dest;
 	s = (char *)src;
+
+	// nothing to copy, and it keeps i = n - 1 below from wrapping
+	if (n == 0)
+	{
+		return (d);
+	}
 	// man does not ask for this, and it only triggers when BOTH are NULL
 	if (d == 0 && s == 0)
 	{
@@ -433,7 +445,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		// overlap case that needs the backward copy
 		if (d > s)
 		{
-			// BUG: n == 0 makes this wrap to the largest size_t value
+			// safe only because n == 0 was handled above
 			i = n - 1;
 			while (i != 0)
 			{
@@ -442,7 +454,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 			}
 			// the loop above stops BEFORE index 0, so byte 0 is done here
 			if (n != 0)
-				d[0] = s[0];
+			d[0] = s[0];
+			
 		}
 		else
 		{
@@ -452,7 +465,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 			{
 				d[i] = s[i];
 				i++;
-			}
+			}	
 		}
 		return (dest);
 	}
